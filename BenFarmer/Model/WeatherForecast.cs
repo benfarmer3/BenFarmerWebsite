@@ -1,4 +1,4 @@
-namespace BenFarmer
+namespace BenFarmer.Model
 {
     public class WeatherForecast
     {
