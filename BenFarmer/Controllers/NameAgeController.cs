@@ -14,5 +14,12 @@ namespace BenFarmer.Controllers
 
             return test;
         }
+
+        public NameAge getNameAge()
+        {
+            string api = "https://api.agify.io?name=michael";
+
+            return new NameAge();
+        }
     }
 }

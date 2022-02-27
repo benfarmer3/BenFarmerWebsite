@@ -6,9 +6,8 @@ export class SplashScreen extends Component {
     render() {
         return (
             <div>
-                <h1>Test </h1>
-                <p>Welcome to your new single-page application, built with:</p>
-                <p>To help you get started, we have also set up:</p>
+                <h1>Home Page </h1>
+                <p>Ben Farmer testing page</p>
             </div>
         );
     }
