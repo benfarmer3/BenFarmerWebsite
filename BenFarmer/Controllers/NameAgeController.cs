@@ -1,25 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BenFarmer.Model;
+using System.Net;
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace BenFarmer.Controllers
 {
-    public class NameAgeController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class NameAgeController : ControllerBase
     {
-        // GET: test
-        public NameAge Index()
+        // GET: api/<NameAge>
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
-            NameAge test = new NameAge();
-            test.Name = "test";
-            test.Age = 1;
-            test.Count = 1;
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("https://api.agify.io/?name=michael");
+            if (!response.IsSuccessStatusCode)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            return Ok(await response.Content.ReadAsAsync<NameAge>());
 
-            return test;
         }
 
-        public NameAge getNameAge()
+        // GET api/<NameAge>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            string api = "https://api.agify.io?name=michael";
-
-            return new NameAge();
+            return "value";
         }
+
     }
 }
